@@ -1,26 +1,28 @@
 ﻿using DapperLib;
-using Examp.View.Admin;
-using Examp.View.Admin.Category;
 using Examp.View.Admin.Question;
 using Examp.View.Admin.Test;
 using Examp.View.ViewModel;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 
-namespace Examp.ModelView.Admin.Test
+namespace Examp.ModelView.Admin.Question
 {
-    public class TestWindow_ModelView : INotifyPropertyChanged
+    public class QuestionWindow_ModelView : INotifyPropertyChanged
     {
-        private DapperLib.Category current_category;
-        public TestWindow_ModelView(DapperLib.Category value)
+        private DapperLib.Test current_test;
+        public QuestionWindow_ModelView(DapperLib.Test value)
         {
-            current_category = value;
+            current_test = value;
             InitializeComponen();
         }
-        public ObservableCollection<DapperLib.Test> Tests { get; set; }
+        public ObservableCollection<DapperLib.Question> Questions { get; set; }
 
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged; // ивент обновления
@@ -31,14 +33,15 @@ namespace Examp.ModelView.Admin.Test
 
         private void InitializeComponen()
         {
-            if (Tests != null)
-                Tests.Clear();
-            Tests = new ObservableCollection<DapperLib.Test>(Test_Repository.Select().ToList()
-                .Where(i=> i.Test_Category_ID == current_category.Category_ID));
-            OnPropertyChanged("Tests");
+            if (Questions != null)
+                Questions.Clear();
+            Questions = new ObservableCollection<DapperLib.Question>(Question_Repository.Select().ToList()
+                .Where(i => i.Question_Test_ID == current_test.Test_ID));
+            OnPropertyChanged("Questions");
         }
-        private DapperLib.Test selected_item; // Выбраная категория
-        public DapperLib.Test Selected_Item
+
+        private DapperLib.Question selected_item; // Выбраная категория
+        public DapperLib.Question Selected_Item
         {
             get { return selected_item; }
             set { selected_item = value; OnPropertyChanged("Selected_Item"); }
@@ -51,7 +54,7 @@ namespace Examp.ModelView.Admin.Test
             {
                 return add ?? (add = new RelayCommand(act =>
                 {
-                    var window = new NewTest(current_category);
+                    var window = new NewQuestion(current_test);
                     window.ShowDialog();
                     InitializeComponen();
                 }));
@@ -68,7 +71,7 @@ namespace Examp.ModelView.Admin.Test
                       return;
                   if (Selected_Item != null)
                   {
-                      Test_Repository.Delete(Selected_Item);
+                      Question_Repository.Delete(Selected_Item);
                       InitializeComponen();
                   }
                   else
@@ -86,28 +89,9 @@ namespace Examp.ModelView.Admin.Test
                 return edit ?? (edit = new RelayCommand(act => {
                     if (Selected_Item != null)
                     {
-                        var window = new EditTest(Selected_Item);
+                        var window = new EditQuestion(Selected_Item);
                         window.ShowDialog();
                         InitializeComponen();
-                    }
-                    else
-                        MessageBox.Show("Нужно выбрать что-то", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }));
-            }
-        }
-
-        private RelayCommand _in; // Редктировать имя категории 
-        public RelayCommand In
-        {
-            get
-            {
-                return _in ?? (_in = new RelayCommand(act =>
-                {
-                    if (Selected_Item != null)
-                    {
-                        var window = new QuestionWindow(Selected_Item);
-                        window.Show();
-                        (act as TestWindow).Close();
                     }
                     else
                         MessageBox.Show("Нужно выбрать что-то", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -121,11 +105,30 @@ namespace Examp.ModelView.Admin.Test
             {
                 return back ?? (back = new RelayCommand(act => {
 
-                    var window = new AdminWindow();
+                    var window = new TestWindow(TestWindow.category);
                     window.Show();
                     (act as Window).Close();
                 }));
             }
         }
+
+        /* private RelayCommand _in; // Редктировать имя категории 
+         public RelayCommand In
+         {
+             get
+             {
+                 return _in ?? (_in = new RelayCommand(act =>
+                 {
+                     if (Selected_Item != null)
+                     {
+                         var window = new QuestionWindow(Selected_Item);
+                         window.Show();
+                         (act as AdminWindow).Close();
+                     }
+                     else
+                         MessageBox.Show("Нужно выбрать что-то", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                 }));
+             }
+         }*/
     }
 }

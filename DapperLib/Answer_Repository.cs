@@ -11,6 +11,7 @@ namespace DapperLib
     {
         public int Answer_ID { get; set; }
         public int Answer_Question_ID { get; set; }
+        public int Answer_True { get; set; }
         public string Answer_Text { get; set; }
 
     }
@@ -29,6 +30,30 @@ namespace DapperLib
                     {
                         var sql = "exec [Answer_INSERT] @Text, @Id ";
                         var values = new { Text = value.Answer_Text, Id = id };
+                        db.Query(sql, values, transaction);
+                        transaction.Commit();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        public static void Create_True(Answer value, int id,bool flag)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                db.Open();
+                using (var transaction = db.BeginTransaction())
+                {
+                    try
+                    {
+                        var sql = "exec [Answer_INSERT] @Text, @Id, @True ";
+                        var values = new { Text = value.Answer_Text, Id = id, True = flag };
                         db.Query(sql, values, transaction);
                         transaction.Commit();
 
@@ -90,7 +115,7 @@ namespace DapperLib
             return coll;
         }
 
-        public static void Update(Answer value)
+        public static void Update(Answer value,bool flag)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -99,8 +124,8 @@ namespace DapperLib
                 {
                     try
                     {
-                        var sql = "exec [Answer_UPDATE] @ID , @Text";
-                        var values = new { ID = value.Answer_ID, Text = value.Answer_Text };
+                        var sql = "exec [Answer_UPDATE] @ID , @Text,@True";
+                        var values = new { ID = value.Answer_ID, Text = value.Answer_Text, @True =flag };
                         db.Query(sql, values);
                         transaction.Commit();
 

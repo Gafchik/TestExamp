@@ -1,4 +1,4 @@
-﻿using Examp.ModelView.Admin.Test;
+﻿using Examp.ModelView.Admin.Question;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +13,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Examp.View.Admin.Test
+namespace Examp.View.Admin.Question
 {
     /// <summary>
-    /// Логика взаимодействия для TestWindow.xaml
+    /// Логика взаимодействия для QuestionWindow.xaml
     /// </summary>
-    public partial class TestWindow : Window
+    public partial class QuestionWindow : Window
     {
-        public static DapperLib.Category category;
-        public TestWindow(DapperLib.Category value)
+        public static DapperLib.Test test;
+        public QuestionWindow(DapperLib.Test value)
         {
             InitializeComponent();
-            category = value;
-            DataContext = new TestWindow_ModelView(category);
+            test = value;
+            DataContext = new QuestionWindow_ModelView(test);
         }
     }
 }

@@ -90,7 +90,7 @@ namespace DapperLib
             return coll;
         }
 
-        public static void Update(Question value)
+        public static void Update(Question value, string new_txt)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -100,7 +100,7 @@ namespace DapperLib
                     try
                     {
                         var sql = "exec [Question_UPDATE] @ID , @Text";
-                        var values = new { ID = value.Question_ID, Text = value.Question_Text };
+                        var values = new { ID = value.Question_ID, Text = new_txt };
                         db.Query(sql, values, transaction);
                         transaction.Commit();
 

@@ -91,10 +91,23 @@ namespace Examp.ModelView.Admin
                     {
                         var window = new TestWindow(Selected_Item);
                         window.Show();
-                        (act as AdminWindow).Close();
+                        (act as Window).Close();
                     }
                     else
                         MessageBox.Show("Нужно выбрать что-то", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }));
+            }
+        }
+        private RelayCommand back; 
+        public RelayCommand Back
+        {
+            get
+            {
+                return back ?? (back = new RelayCommand(act => {
+                   
+                        var window = new MainWindow();
+                        window.Show();
+                        (act as AdminWindow).Close();                   
                 }));
             }
         }

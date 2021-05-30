@@ -73,6 +73,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Admin\Question\EditQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\Question\NewQuestion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\Question\QuestionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\Test\EditTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,6 +106,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ModelView\Admin\Category\AdminMainModelView.cs" />
+    <Compile Include="ModelView\Admin\Question\QuestionWindow_ModelView.cs" />
     <Compile Include="ModelView\Admin\Test\TestWindow_ModelView.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="View\Admin\Category\AdminWindow.xaml.cs">
@@ -104,6 +117,15 @@
     </Compile>
     <Compile Include="View\Admin\Category\NewCategory.xaml.cs">
       <DependentUpon>NewCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Question\EditQuestion.xaml.cs">
+      <DependentUpon>EditQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Question\NewQuestion.xaml.cs">
+      <DependentUpon>NewQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Question\QuestionWindow.xaml.cs">
+      <DependentUpon>QuestionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\Test\EditTest.xaml.cs">
       <DependentUpon>EditTest.xaml</DependentUpon>
@@ -148,10 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ModelView\Admin\Answer\" />
-    <Folder Include="ModelView\Admin\Question\" />
     <Folder Include="Model\" />
     <Folder Include="View\Admin\Answer\" />
-    <Folder Include="View\Admin\Question\" />
     <Folder Include="View\User\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,12 +1,12 @@
-﻿<Window x:Class="Examp.View.Admin.AdminWindow"
+﻿<Window x:Class="Examp.View.Admin.Question.QuestionWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Examp.View.Admin"
+        xmlns:local="clr-namespace:Examp.View.Admin.Question"
         mc:Ignorable="d"
        ResizeMode="NoResize" x:Name="Window"
-        Title="Меню категорий" Height="450" Width="600">
+        Title="Меню Вопросов" Height="450" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -26,17 +26,18 @@
         <Button Content="Изменить" Grid.Column="3" Grid.Row="0" Margin="30 10" Command="{Binding Edit}"/>
         <Button Content="ВЫБРАТЬ" Grid.Column="4" Grid.Row="0" Margin="30 10" 
               CommandParameter="{Binding ElementName=Window}"  Command="{Binding In}"/>
-        
-        <ListBox Grid.Row="1"  ItemsSource="{Binding Categorys}" 
-              Grid.Column="1" Grid.ColumnSpan="3"      SelectedItem="{Binding Selected_Item}">
+   
+    
+        <ListBox Grid.Row="1"  ItemsSource="{Binding Questions}" 
+               Grid.Column="1" Grid.ColumnSpan="3"    SelectedItem="{Binding Selected_Item}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel >
-                        <TextBlock   Text="{Binding Path=Category_Name}"  FontSize="15"></TextBlock>
+                    <StackPanel>
+                        <TextBlock  Text="{Binding Path=Question_Text}" FontSize="15"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-      
+
     </Grid>
 </Window>

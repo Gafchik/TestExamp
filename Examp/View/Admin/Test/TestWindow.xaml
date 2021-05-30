@@ -6,15 +6,29 @@
         xmlns:local="clr-namespace:Examp.View.Admin.Test"
         mc:Ignorable="d"
       ResizeMode="NoResize" x:Name="Window"
-        Title="Меню Тестов" Height="450" Width="400">
-    <StackPanel>
-        <Button Content="Добавть" Grid.Column="0" Grid.Row="0" Margin="30 10" Command="{Binding Add}"/>
-        <Button Content="Удалить" Grid.Column="1" Grid.Row="0" Margin="30 10" Command="{Binding Dell}"/>
-        <Button Content="Изменить" Grid.Column="2" Grid.Row="0" Margin="30 10" Command="{Binding Edit}"/>
-        <Button Content="ВЫБРАТЬ" Grid.Column="2" Grid.Row="0" Margin="30 10" 
+        Title="Меню Тестов" Height="450" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Button Grid.Column="0" Content="Назад"  Grid.Row="0" Margin="30 10" Command="{Binding Back}"
+                 CommandParameter="{Binding ElementName=Window}"/>
+        <Button  Content="Добавть" Grid.Column="1" Grid.Row="0" Margin="30 10" Command="{Binding Add}"/>
+        <Button Content="Удалить" Grid.Column="2" Grid.Row="0" Margin="30 10" Command="{Binding Dell}"/>
+        <Button Content="Изменить" Grid.Column="3" Grid.Row="0" Margin="30 10" Command="{Binding Edit}"/>
+        <Button Content="ВЫБРАТЬ" Grid.Column="4" Grid.Row="0" Margin="30 10" 
               CommandParameter="{Binding ElementName=Window}"  Command="{Binding In}"/>
-        <ListBox Grid.Row="1" HorizontalAlignment="Center" ItemsSource="{Binding Tests}" 
-               Width="220"  Grid.Column="1" Grid.ColumnSpan="2"    SelectedItem="{Binding Selected_Item}">
+        
+        <ListBox Grid.Row="1"  ItemsSource="{Binding Tests}" 
+               Grid.Column="1" Grid.ColumnSpan="3"    SelectedItem="{Binding Selected_Item}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -24,5 +38,5 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-    </StackPanel>
+    </Grid>
 </Window>
