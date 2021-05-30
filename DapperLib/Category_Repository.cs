@@ -71,20 +71,18 @@ namespace DapperLib
             List<Category> coll = new List<Category>();
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                using (var transaction = db.BeginTransaction())
-                {
+               
                     try
                     {
+                    db.Open();
                         var sql = "exec [Category_SELECT]";
-                        coll = db.Query<Category>(sql, transaction).ToList();
-                        transaction.Commit();
+                        coll = db.Query<Category>(sql).ToList();                     
                     }
                     catch (Exception ex)
-                    {
-                        transaction.Rollback();
+                    { 
                         throw ex;
                     }
-                }
+                
             }
             return coll;
         }

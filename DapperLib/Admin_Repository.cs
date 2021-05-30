@@ -15,7 +15,7 @@ namespace DapperLib
     }
     public static class Admin_Repository
     {
-        static string connectionString = "Data Source=SQL5104.site4now.net;Initial Catalog=db_a736b5_foodeliverydb123;Admin Id=db_a736b5_foodeliverydb123_admin;Password=QQddRRvv1";
+        static string connectionString = "Data Source=SQL5104.site4now.net;Initial Catalog=db_a736b5_foodeliverydb123;User Id=db_a736b5_foodeliverydb123_admin;Password=QQddRRvv1";
 
         public static void Create(Admin1 value)
         {
@@ -26,7 +26,7 @@ namespace DapperLib
                 {
                     try
                     {
-                        var sql = "exec [Admin_INSERT] @Login , @Pass ";
+                        var sql = "exec [Admins_INSERT] @Login , @Pass ";
                         var values = new { Login = value.Admin_Login, Pass = value.Admin_Pass };
                         db.Query(sql, values);
                         transaction.Commit();
@@ -50,7 +50,7 @@ namespace DapperLib
                 {
                     try
                     {
-                        var sql = "exec [Admin_DELETE] @ID";
+                        var sql = "exec [Admins_DELETE] @ID";
                         var values = new { ID = value.Admin_ID };
                         db.Query(sql, values);
                         transaction.Commit();
@@ -71,19 +71,17 @@ namespace DapperLib
             List<Admin1> coll = new List<Admin1>();
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                using (var transaction = db.BeginTransaction())
+
+                try
                 {
-                    try
-                    {
-                        var sql = "exec [Admin_SELECT]";
-                        coll = db.Query<Admin1>(sql, transaction).ToList();
-                        transaction.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        throw ex;
-                    }
+                    db.Open();
+                    var sql = "exec [Admins_SELECT]";
+                    coll = db.Query<Admin1>(sql).ToList();
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
                 }
             }
             return coll;
@@ -98,7 +96,7 @@ namespace DapperLib
                 {
                     try
                     {
-                        var sql = "exec [Admin_UPDATE] @ID ,@Login , @Pass";
+                        var sql = "exec [Admins_UPDATE] @ID ,@Login , @Pass";
                         var values = new { ID = value.Admin_ID, Login = value.Admin_Login, Pass = value.Admin_Pass };
                         db.Query(sql, values);
                         transaction.Commit();

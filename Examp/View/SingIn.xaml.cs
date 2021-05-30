@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DapperLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
 
 namespace Examp
 {
@@ -27,6 +29,21 @@ namespace Examp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if(log.Text == null || log.Text ==""|| pass.Password == null || pass.Password =="")
+            {
+                MessageBox.Show("Вы ничего не ввели");
+                return;
+            }
+            else if(User_Repository.Select().ToList().Exists(i=> i.User_Login == log.Text || i.User_Pass == pass.Password))
+            {
+                MessageBox.Show("Вы Вошли как пользователь");
+            }
+            else if (Admin_Repository.Select().ToList().Exists(i => i.Admin_Login == log.Text || i.Admin_Pass == pass.Password))
+            {
+                MessageBox.Show("Вы Вошли как админ");
+            }
+            else
+                MessageBox.Show("Не верный логин и пароль");
 
         }
     }

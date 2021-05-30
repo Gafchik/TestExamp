@@ -72,20 +72,20 @@ namespace DapperLib
             List<Question> coll = new List<Question>();
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                using (var transaction = db.BeginTransaction())
+
+                try
                 {
-                    try
-                    {
-                        var sql = "exec [Question_SELECT]";
-                        coll = db.Query<Question>(sql, transaction).ToList();
-                        transaction.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        throw ex;
-                    }
+                    db.Open();
+                    var sql = "exec [Question_SELECT]";
+                    coll = db.Query<Question>(sql).ToList();
+
                 }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+
             }
             return coll;
         }
