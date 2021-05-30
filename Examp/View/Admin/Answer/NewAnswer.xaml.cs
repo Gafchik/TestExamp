@@ -19,7 +19,7 @@ namespace Examp.View.Admin.Answer
     /// </summary>
     public partial class NewAnswer : Window
     {
-        public NewAnswer()
+        public NewAnswer(DapperLib.Question value)
         {
             InitializeComponent();
         }

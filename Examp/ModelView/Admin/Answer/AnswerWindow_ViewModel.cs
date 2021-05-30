@@ -52,7 +52,7 @@ namespace Examp.ModelView.Admin.Answer
             {
                 return add ?? (add = new RelayCommand(act =>
                 {
-                    var window = new NewAnswer(current_test);
+                    var window = new NewAnswer(current_question);
                     window.ShowDialog();
                     InitializeComponen();
                 }));
