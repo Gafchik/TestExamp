@@ -1,7 +1,6 @@
 ﻿using DapperLib;
 using Examp.View.Admin.Answer;
 using Examp.View.Admin.Question;
-using Examp.View.Admin.Test;
 using Examp.View.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -13,34 +12,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Examp.ModelView.Admin.Question
+namespace Examp.ModelView.Admin.Answer
 {
-    public class QuestionWindow_ModelView : INotifyPropertyChanged
+   public class AnswerWindow_ViewModel : INotifyPropertyChanged
     {
-        private DapperLib.Test current_test;
-        public QuestionWindow_ModelView(DapperLib.Test value)
+        private DapperLib.Question current_question;
+        public AnswerWindow_ViewModel(DapperLib.Question value)
         {
-            current_test = value;
+            current_question = value;
             InitializeComponen();
         }
-        public ObservableCollection<DapperLib.Question> Questions { get; set; }
 
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged; // ивент обновления
         public void OnPropertyChanged([CallerMemberName] string prop = "")
            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        #endregion     
+        #endregion
 
-
+        public ObservableCollection<DapperLib.Answer> Answers { get; set; }
         private void InitializeComponen()
         {
-            if (Questions != null)
-                Questions.Clear();
-            Questions = new ObservableCollection<DapperLib.Question>(Question_Repository.Select().ToList()
-                .Where(i => i.Question_Test_ID == current_test.Test_ID));
-            OnPropertyChanged("Questions");
+            if (Answers != null)
+                Answers.Clear();
+            Answers = new ObservableCollection<DapperLib.Answer>(Answer_Repository.Select().ToList()
+                .Where(i => i.Answer_Question_ID == current_question.Question_ID));
+            OnPropertyChanged("Answers");
         }
-
         private DapperLib.Question selected_item; // Выбраная категория
         public DapperLib.Question Selected_Item
         {
@@ -55,7 +52,7 @@ namespace Examp.ModelView.Admin.Question
             {
                 return add ?? (add = new RelayCommand(act =>
                 {
-                    var window = new NewQuestion(current_test);
+                    var window = new NewAnswer(current_test);
                     window.ShowDialog();
                     InitializeComponen();
                 }));
@@ -109,30 +106,11 @@ namespace Examp.ModelView.Admin.Question
                 return back ?? (back = new RelayCommand(act =>
                 {
 
-                    var window = new TestWindow(TestWindow.category);
+                    var window = new QuestionWindow(QuestionWindow.test);
                     window.Show();
                     (act as Window).Close();
                 }));
             }
-        }
-
-        private RelayCommand _in; // Редктировать имя категории 
-        public RelayCommand In
-        {
-            get
-            {
-                return _in ?? (_in = new RelayCommand(act =>
-                {
-                    if (Selected_Item != null)
-                    {
-                        var window = new AnswerWindow(Selected_Item);
-                        window.Show();
-                        (act as QuestionWindow).Close();
-                    }
-                    else
-                        MessageBox.Show("Нужно выбрать что-то", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }));
-            }
-        }
+        }   
     }
 }

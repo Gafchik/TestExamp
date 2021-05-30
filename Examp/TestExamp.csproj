@@ -61,6 +61,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\Admin\Answer\AnswerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\Answer\EditAnswer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\Answer\NewAnswer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\Category\AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,10 +117,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ModelView\Admin\Answer\AnswerWindow_ViewModel.cs" />
     <Compile Include="ModelView\Admin\Category\AdminMainModelView.cs" />
     <Compile Include="ModelView\Admin\Question\QuestionWindow_ModelView.cs" />
     <Compile Include="ModelView\Admin\Test\TestWindow_ModelView.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="View\Admin\Answer\AnswerWindow.xaml.cs">
+      <DependentUpon>AnswerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Answer\EditAnswer.xaml.cs">
+      <DependentUpon>EditAnswer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Answer\NewAnswer.xaml.cs">
+      <DependentUpon>NewAnswer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\Category\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
@@ -169,9 +191,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ModelView\Admin\Answer\" />
     <Folder Include="Model\" />
-    <Folder Include="View\Admin\Answer\" />
     <Folder Include="View\User\" />
   </ItemGroup>
   <ItemGroup>
