@@ -73,6 +73,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Admin\Test\EditTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\Test\NewTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\Test\TestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SingIn.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,7 +93,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ModelView\Admin\AdminMainModelView.cs" />
+    <Compile Include="ModelView\Admin\Category\AdminMainModelView.cs" />
+    <Compile Include="ModelView\Admin\Test\TestWindow_ModelView.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="View\Admin\Category\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
@@ -91,6 +104,15 @@
     </Compile>
     <Compile Include="View\Admin\Category\NewCategory.xaml.cs">
       <DependentUpon>NewCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Test\EditTest.xaml.cs">
+      <DependentUpon>EditTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Test\NewTest.xaml.cs">
+      <DependentUpon>NewTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Test\TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SingIn.xaml.cs">
       <DependentUpon>SingIn.xaml</DependentUpon>
@@ -125,7 +147,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ModelView\Admin\Answer\" />
+    <Folder Include="ModelView\Admin\Question\" />
     <Folder Include="Model\" />
+    <Folder Include="View\Admin\Answer\" />
+    <Folder Include="View\Admin\Question\" />
     <Folder Include="View\User\" />
   </ItemGroup>
   <ItemGroup>

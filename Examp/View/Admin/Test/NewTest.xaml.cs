@@ -1,25 +1,25 @@
 ﻿using DapperLib;
 using System.Windows;
 
-namespace Examp.View.Admin.Category
+namespace Examp.View.Admin.Test
 {
     /// <summary>
-    /// Логика взаимодействия для EditCategory.xaml
+    /// Логика взаимодействия для NewTest.xaml
     /// </summary>
-    public partial class EditCategory : Window
+    public partial class NewTest : Window
     {
         private DapperLib.Category category;
-        public EditCategory(DapperLib.Category value)
+        public NewTest(DapperLib.Category value)
         {
-            InitializeComponent();
             category = value;
+            InitializeComponent();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (Name.Text == "" || Name.Text == null)
                 return;
-            Category_Repository.Update(category, Name.Text);
-            MessageBox.Show("Обновлено");
+            Test_Repository.Create(new DapperLib.Test { Test_Name = Name.Text }, category.Category_ID);
+            MessageBox.Show("Добавлнео");
             this.Close();
         }
     }

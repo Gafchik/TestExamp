@@ -18,7 +18,7 @@ namespace DapperLib
     {
         static string connectionString = "Data Source=SQL5104.site4now.net;Initial Catalog=db_a736b5_foodeliverydb123;User Id=db_a736b5_foodeliverydb123_admin;Password=QQddRRvv1";
 
-        public static void Create(Test value)
+        public static void Create(Test value, int id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -27,8 +27,8 @@ namespace DapperLib
                 {
                     try
                     {
-                        var sql = "exec [Test_INSERT] @Name ";
-                        var values = new { Name = value.Test_Name };
+                        var sql = "exec [Test_INSERT] @Name,@Id ";
+                        var values = new { Name = value.Test_Name,Id =id };
                         db.Query(sql, values, transaction);
                         transaction.Commit();
 
@@ -90,7 +90,7 @@ namespace DapperLib
             return coll;
         }
 
-        public static void Update(Test value)
+        public static void Update(Test value, string New_Name)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -100,7 +100,7 @@ namespace DapperLib
                     try
                     {
                         var sql = "exec [Test_UPDATE] @ID ,@Name";
-                        var values = new { ID = value.Test_ID, Name = value.Test_Name };
+                        var values = new { ID = value.Test_ID, Name = New_Name };
                         db.Query(sql, values, transaction);
                         transaction.Commit();
 

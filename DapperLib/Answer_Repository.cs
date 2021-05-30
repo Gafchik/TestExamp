@@ -18,7 +18,7 @@ namespace DapperLib
     {
         static string connectionString = "Data Source=SQL5104.site4now.net;Initial Catalog=db_a736b5_foodeliverydb123;User Id=db_a736b5_foodeliverydb123_admin;Password=QQddRRvv1";
 
-        public static void Create(Answer value)
+        public static void Create(Answer value, int id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -27,8 +27,8 @@ namespace DapperLib
                 {
                     try
                     {
-                        var sql = "exec [Answer_INSERT] @Text ";
-                        var values = new { Text = value.Answer_Text };
+                        var sql = "exec [Answer_INSERT] @Text, @Id ";
+                        var values = new { Text = value.Answer_Text, Id = id };
                         db.Query(sql, values, transaction);
                         transaction.Commit();
 

@@ -1,4 +1,4 @@
-﻿using Examp.ModelView.Admin;
+﻿using Examp.ModelView.Admin.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +13,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Examp.View.Admin
+namespace Examp.View.Admin.Test
 {
     /// <summary>
-    /// Логика взаимодействия для AdminWindow.xaml
+    /// Логика взаимодействия для TestWindow.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class TestWindow : Window
     {
-        public AdminWindow()
+        private DapperLib.Category category;
+        public TestWindow(DapperLib.Category value)
         {
             InitializeComponent();
-            DataContext = new AdminMainModelView();
+            category = value;
+            DataContext = new TestWindow_ModelView(category);
         }
-
-        
     }
 }

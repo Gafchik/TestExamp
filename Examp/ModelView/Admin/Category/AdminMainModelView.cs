@@ -1,23 +1,18 @@
 ﻿using DapperLib;
+using Examp.View.Admin;
 using Examp.View.Admin.Category;
+using Examp.View.Admin.Test;
 using Examp.View.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Examp.ModelView.Admin
 {
-   public class AdminMainModelView : INotifyPropertyChanged
+    public class AdminMainModelView : INotifyPropertyChanged
     {
-        
-    
-      
         public ObservableCollection<Category> Categorys { get; set; }
  
         #region PropertyChanged
@@ -85,10 +80,23 @@ namespace Examp.ModelView.Admin
                     MessageBox.Show("Нужно выбрать что-то", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             })); }
         }
-        private RelayCommand _in; // Выбрать категорию
+
+        private RelayCommand _in; // Редктировать имя категории 
         public RelayCommand In
         {
-            get { return _in ?? (_in = new RelayCommand(act => { })); }
+            get
+            {
+                return _in ?? (_in = new RelayCommand(act => {
+                    if (Selected_Item != null)
+                    {
+                        var window = new TestWindow(Selected_Item);
+                        window.Show();
+                        (act as AdminWindow).Close();
+                    }
+                    else
+                        MessageBox.Show("Нужно выбрать что-то", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }));
+            }
         }
     }
 }
