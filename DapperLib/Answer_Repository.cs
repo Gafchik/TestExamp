@@ -16,7 +16,7 @@ namespace DapperLib
     }
     public static class Answer_Repository
     {
-        static string connectionString = "Data Source=SQL5104.site4now.net;Initial Catalog=db_a736b5_foodeliverydb123;Answer Id=db_a736b5_foodeliverydb123_Answer;Password=QQddRRvv1";
+        static string connectionString = "Data Source=SQL5104.site4now.net;Initial Catalog=db_a736b5_foodeliverydb123;User Id=db_a736b5_foodeliverydb123_admin;Password=QQddRRvv1";
 
         public static void Create(Answer value)
         {
@@ -29,7 +29,7 @@ namespace DapperLib
                     {
                         var sql = "exec [Answer_INSERT] @Text ";
                         var values = new { Text = value.Answer_Text };
-                        db.Query(sql, values);
+                        db.Query(sql, values, transaction);
                         transaction.Commit();
 
                     }
@@ -53,7 +53,7 @@ namespace DapperLib
                     {
                         var sql = "exec [Answer_DELETE] @ID";
                         var values = new { ID = value.Answer_ID };
-                        db.Query(sql, values);
+                        db.Query(sql, values, transaction);
                         transaction.Commit();
                     }
                     catch (Exception ex)

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using Examp.View.Admin;
 
 namespace Examp
 {
@@ -37,10 +38,16 @@ namespace Examp
             else if(User_Repository.Select().ToList().Exists(i=> i.User_Login == log.Text || i.User_Pass == pass.Password))
             {
                 MessageBox.Show("Вы Вошли как пользователь");
+                var windiw = new AdminWindow();
+                windiw.Show();
+                this.Close();
             }
             else if (Admin_Repository.Select().ToList().Exists(i => i.Admin_Login == log.Text || i.Admin_Pass == pass.Password))
             {
                 MessageBox.Show("Вы Вошли как админ");
+                var windiw = new AdminWindow();
+                windiw.Show();
+                this.Close();
             }
             else
                 MessageBox.Show("Не верный логин и пароль");

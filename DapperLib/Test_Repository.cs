@@ -16,7 +16,7 @@ namespace DapperLib
     }
     public static class Test_Repository
     {
-        static string connectionString = "Data Source=SQL5104.site4now.net;Initial Catalog=db_a736b5_foodeliverydb123;Test Id=db_a736b5_foodeliverydb123_Test;Password=QQddRRvv1";
+        static string connectionString = "Data Source=SQL5104.site4now.net;Initial Catalog=db_a736b5_foodeliverydb123;User Id=db_a736b5_foodeliverydb123_admin;Password=QQddRRvv1";
 
         public static void Create(Test value)
         {
@@ -29,7 +29,7 @@ namespace DapperLib
                     {
                         var sql = "exec [Test_INSERT] @Name ";
                         var values = new { Name = value.Test_Name };
-                        db.Query(sql, values);
+                        db.Query(sql, values, transaction);
                         transaction.Commit();
 
                     }
@@ -53,7 +53,7 @@ namespace DapperLib
                     {
                         var sql = "exec [Test_DELETE] @ID";
                         var values = new { ID = value.Test_ID };
-                        db.Query(sql, values);
+                        db.Query(sql, values, transaction);
                         transaction.Commit();
                     }
                     catch (Exception ex)
@@ -101,7 +101,7 @@ namespace DapperLib
                     {
                         var sql = "exec [Test_UPDATE] @ID ,@Name";
                         var values = new { ID = value.Test_ID, Name = value.Test_Name };
-                        db.Query(sql, values);
+                        db.Query(sql, values, transaction);
                         transaction.Commit();
 
                     }

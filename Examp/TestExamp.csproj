@@ -61,6 +61,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\Admin\Category\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\Category\EditCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\Category\NewCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SingIn.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,6 +80,17 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModelView\Admin\AdminMainModelView.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="View\Admin\Category\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Category\EditCategory.xaml.cs">
+      <DependentUpon>EditCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Category\NewCategory.xaml.cs">
+      <DependentUpon>NewCategory.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SingIn.xaml.cs">
       <DependentUpon>SingIn.xaml</DependentUpon>
@@ -102,8 +125,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ModelView\" />
     <Folder Include="Model\" />
+    <Folder Include="View\User\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DapperLib\DapperLib.csproj">

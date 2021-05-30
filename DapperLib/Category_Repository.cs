@@ -15,7 +15,7 @@ namespace DapperLib
     }
     public static class Category_Repository
     {
-        static string connectionString = "Data Source=SQL5104.site4now.net;Initial Catalog=db_a736b5_foodeliverydb123;Category Id=db_a736b5_foodeliverydb123_Category;Password=QQddRRvv1";
+        static string connectionString = "Data Source=SQL5104.site4now.net;Initial Catalog=db_a736b5_foodeliverydb123;User Id=db_a736b5_foodeliverydb123_admin;Password=QQddRRvv1";
 
         public static void Create(Category value)
         {
@@ -28,7 +28,7 @@ namespace DapperLib
                     {
                         var sql = "exec [Category_INSERT]@Name ";
                         var values = new { Name = value.Category_Name };
-                        db.Query(sql, values);
+                        db.Query(sql, values, transaction);
                         transaction.Commit();
 
                     }
@@ -52,7 +52,7 @@ namespace DapperLib
                     {
                         var sql = "exec [Category_DELETE] @ID";
                         var values = new { ID = value.Category_ID };
-                        db.Query(sql, values);
+                        db.Query(sql, values, transaction);
                         transaction.Commit();
                     }
                     catch (Exception ex)
@@ -87,7 +87,7 @@ namespace DapperLib
             return coll;
         }
 
-        public static void Update(Category value)
+        public static void Update(Category value, string New_Name)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -97,8 +97,8 @@ namespace DapperLib
                     try
                     {
                         var sql = "exec [Category_UPDATE] @ID ,@Name";
-                        var values = new { ID = value.Category_ID, Name = value.Category_Name};
-                        db.Query(sql, values);
+                        var values = new { ID = value.Category_ID, Name = New_Name };
+                        db.Query(sql, values, transaction);
                         transaction.Commit();
 
                     }

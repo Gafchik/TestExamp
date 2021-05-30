@@ -28,7 +28,7 @@ namespace DapperLib
                     {
                         var sql = "exec [User_INSERT] @Login , @Pass ";
                         var values = new { Login = value.User_Login, Pass = value.User_Pass };
-                        db.Query(sql, values);                      
+                        db.Query(sql, values, transaction);                      
                         transaction.Commit();
 
                     }
@@ -52,7 +52,7 @@ namespace DapperLib
                     {
                         var sql = "exec [User_DELETE] @ID";
                         var values = new { ID = value.User_ID};
-                        db.Query(sql, values);
+                        db.Query(sql, values, transaction);
                         transaction.Commit();
                     }
                     catch (Exception ex)
@@ -97,7 +97,7 @@ namespace DapperLib
                     {
                         var sql = "exec [User_UPDATE] @ID ,@Login , @Pass";
                         var values = new { ID = value.User_ID, Login = value.User_Login, Pass = value.User_Pass };
-                         db.Query(sql, values);                       
+                         db.Query(sql, values, transaction);                       
                         transaction.Commit();
 
                     }

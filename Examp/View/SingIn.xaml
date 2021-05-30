@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Examp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="Вход" Height="300" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -16,11 +17,11 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock FontSize="50" Text="Login" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock FontSize="50" Text="Password" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="log" Margin="15"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" FontSize="50"/>
-        <PasswordBox x:Name="pass" Margin="15"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" FontSize="50"/>
+        <TextBlock FontSize="50" Text="Login :" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock FontSize="50" Text="Password :" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="log" Margin="15"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" FontSize="30"/>
+        <PasswordBox x:Name="pass" Margin="15"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" FontSize="30"/>
         <Button Grid.Column="0" Grid.Row="2" 
-               Margin="100 50" Grid.ColumnSpan="2" Content="Sing IN" Click="Button_Click"/>
+               Margin="50 20" Grid.ColumnSpan="2" Content="Sing IN" Click="Button_Click"/>
     </Grid>
 </Window>
