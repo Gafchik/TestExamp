@@ -2,19 +2,15 @@
 using Examp.View.Admin.Answer;
 using Examp.View.Admin.Question;
 using Examp.View.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Examp.ModelView.Admin.Answer
 {
-   public class AnswerWindow_ViewModel : INotifyPropertyChanged
+    public class AnswerWindow_ViewModel : INotifyPropertyChanged
     {
         private DapperLib.Question current_question;
         public AnswerWindow_ViewModel(DapperLib.Question value)

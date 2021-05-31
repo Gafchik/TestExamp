@@ -3,14 +3,10 @@ using Examp.View.Admin.Answer;
 using Examp.View.Admin.Question;
 using Examp.View.Admin.Test;
 using Examp.View.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Examp.ModelView.Admin.Question

@@ -1,6 +1,5 @@
 ﻿using DapperLib;
 using Examp.View.Admin;
-using Examp.View.Admin.Category;
 using Examp.View.Admin.Question;
 using Examp.View.Admin.Test;
 using Examp.View.ViewModel;
