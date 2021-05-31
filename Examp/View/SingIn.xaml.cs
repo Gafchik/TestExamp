@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using Examp.View.Admin;
+using Examp.View.User.Category;
 
 namespace Examp
 {
@@ -25,7 +26,7 @@ namespace Examp
             else if(User_Repository.Select().ToList().Exists(i=> i.User_Login == log.Text || i.User_Pass == pass.Password))
             {
                 MessageBox.Show("Вы Вошли как пользователь");
-                var windiw = new AdminWindow();
+                var windiw = new UserCategoryWindow();
                 windiw.Show();
                 this.Close();
             }

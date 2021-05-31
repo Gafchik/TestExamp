@@ -1,0 +1,24 @@
+﻿<Window x:Class="Examp.View.User.CurrentTest.UserCurrentTest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Examp.View.User.CurrentTest"
+        mc:Ignorable="d"
+        Title="UserCurrentTest" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height ="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="Test_L" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" FontSize="25"/>
+        <Label Grid.Row="0" Grid.Column="1" FontSize="25" Content="Осталось:" HorizontalAlignment="Right"/>
+        <TextBlock x:Name="Timer_L" Margin="5 10"   Grid.Row="0" Grid.Column="2"  HorizontalAlignment="Center" FontSize="22"/>
+    </Grid>
+</Window>
