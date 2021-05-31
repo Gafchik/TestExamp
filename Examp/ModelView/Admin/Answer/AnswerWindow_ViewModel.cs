@@ -36,16 +36,26 @@ namespace Examp.ModelView.Admin.Answer
                 Answers.Clear();
             Answers = new ObservableCollection<DapperLib.Answer>(Answer_Repository.Select().ToList()
                 .Where(i => i.Answer_Question_ID == current_question.Question_ID));
-            OnPropertyChanged("Answers");
+            Answers.ToList().FindAll(i => i.Answer_True != 0).ForEach(i => i.Answer_True_txt = "Правельный");
+            OnPropertyChanged("Answers");       
         }
-        private DapperLib.Question selected_item; // Выбраная категория
-        public DapperLib.Question Selected_Item
+        private DapperLib.Answer selected_item; // Выбраная категория
+        public DapperLib.Answer Selected_Item
         {
             get { return selected_item; }
             set { selected_item = value; OnPropertyChanged("Selected_Item"); }
         }
 
-        private RelayCommand add; // новая категория
+
+        private string _bool; //нужен для отображения правельный ответ или нет
+        public string BOOL
+        {
+            get { return _bool; }
+            set { _bool = value; OnPropertyChanged("_bool"); }
+        }
+
+
+        private RelayCommand add; 
         public RelayCommand Add
         {
             get
@@ -58,7 +68,7 @@ namespace Examp.ModelView.Admin.Answer
                 }));
             }
         }
-        private RelayCommand dell; // dell категорию
+        private RelayCommand dell; 
         public RelayCommand Dell
         {
             get
@@ -70,7 +80,7 @@ namespace Examp.ModelView.Admin.Answer
                       return;
                   if (Selected_Item != null)
                   {
-                      Question_Repository.Delete(Selected_Item);
+                      Answer_Repository.Delete(Selected_Item);
                       InitializeComponen();
                   }
                   else
@@ -80,7 +90,7 @@ namespace Examp.ModelView.Admin.Answer
             }
         }
 
-        private RelayCommand edit; // Редктировать имя категории 
+        private RelayCommand edit; 
         public RelayCommand Edit
         {
             get
@@ -89,7 +99,7 @@ namespace Examp.ModelView.Admin.Answer
                 {
                     if (Selected_Item != null)
                     {
-                        var window = new EditQuestion(Selected_Item);
+                        var window = new EditAnswer(Selected_Item);
                         window.ShowDialog();
                         InitializeComponen();
                     }
@@ -105,7 +115,6 @@ namespace Examp.ModelView.Admin.Answer
             {
                 return back ?? (back = new RelayCommand(act =>
                 {
-
                     var window = new QuestionWindow(QuestionWindow.test);
                     window.Show();
                     (act as Window).Close();

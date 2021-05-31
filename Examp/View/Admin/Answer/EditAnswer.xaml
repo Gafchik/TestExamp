@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Examp.View.Admin.Answer"
         mc:Ignorable="d"
-        Title="EditAnswer" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+       ResizeMode="NoResize"
+        Title="Изменть Ответ" Height="150" Width="600">
+    <StackPanel Orientation="Horizontal">
+        <TextBox x:Name="Name" Margin="10 20" Width="400" FontSize="30"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <Label Grid.Row="0" HorizontalAlignment="Left" Margin="5 15" FontSize="10" Content="Назначить правельным" />
+                <CheckBox Grid.Row="0" Margin="0 20" HorizontalAlignment="Right" x:Name="check"/>
+            </StackPanel>
+
+            <Button Grid.Row="1" Margin="5 15" Content="Изменить" Click="Button_Click"/>
+        </Grid>
+
+    </StackPanel>
 </Window>

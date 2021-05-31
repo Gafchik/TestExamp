@@ -25,7 +25,9 @@ namespace Examp.View.Admin.Answer
         {
             InitializeComponent();
             question = value;
-            DataContext = new AnswerWindow_ViewModel(question);
+            DataContext = new AnswerWindow_ViewModel(question);          
         }
+
+        
     }
 }

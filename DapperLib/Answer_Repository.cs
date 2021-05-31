@@ -8,10 +8,11 @@ using System.Linq;
 namespace DapperLib
 {
     public class Answer
-    {
+    {       
         public int Answer_ID { get; set; }
         public int Answer_Question_ID { get; set; }
         public int Answer_True { get; set; }
+        public string Answer_True_txt { get; set; }
         public string Answer_Text { get; set; }
 
     }
@@ -52,7 +53,7 @@ namespace DapperLib
                 {
                     try
                     {
-                        var sql = "exec [Answer_INSERT] @Text, @Id, @True ";
+                        var sql = "exec [Answer_INSERT_True] @Text, @Id, @True ";
                         var values = new { Text = value.Answer_Text, Id = id, True = flag };
                         db.Query(sql, values, transaction);
                         transaction.Commit();
@@ -124,9 +125,32 @@ namespace DapperLib
                 {
                     try
                     {
-                        var sql = "exec [Answer_UPDATE] @ID , @Text,@True";
+                        var sql = "exec [Answer_UPDATE] @ID, @Text, @True";
                         var values = new { ID = value.Answer_ID, Text = value.Answer_Text, @True =flag };
-                        db.Query(sql, values);
+                        db.Query(sql, values, transaction);
+                        transaction.Commit();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+        public static void Update(Answer value)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                db.Open();
+                using (var transaction = db.BeginTransaction())
+                {
+                    try
+                    {
+                        var sql = "exec [Answer_UPDATE] @ID, @Text, @True";
+                        var values = new { ID = value.Answer_ID, Text = value.Answer_Text };
+                        db.Query(sql, values, transaction);
                         transaction.Commit();
 
                     }
@@ -139,6 +163,7 @@ namespace DapperLib
             }
         }
     }
+
 }
 
 

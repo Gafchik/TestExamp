@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DapperLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,31 @@ namespace Examp.View.Admin.Answer
     /// </summary>
     public partial class EditAnswer : Window
     {
-        public EditAnswer()
+        private DapperLib.Answer answer;
+        public EditAnswer(DapperLib.Answer value)
         {
+            answer = value;
             InitializeComponent();
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (Name.Text == "" || Name.Text == null)
+                return;
+            if (check.IsChecked.Value)
+            {
+                Answer_Repository.Update(answer,true);
+                MessageBox.Show("Добавлнео, назначено");
+                this.Close();
+            }
+            else
+            {
+                Answer_Repository.Update(answer);
+                MessageBox.Show("Добавлнео");
+                this.Close();
+            }
+
         }
     }
 }
+
+

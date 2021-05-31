@@ -9,7 +9,7 @@
         Title="Изменение" Height="150" Width="550">
     <StackPanel Orientation="Horizontal">
         <TextBox x:Name="Name" Margin="10 20" Width="400" FontSize="30"/>
-        <Button  Margin="10 30" Content="Добавить" Click="Button_Click"/>
+        <Button  Margin="10 30" Content="Изменить" Click="Button_Click"/>
     </StackPanel>
 </Window>
 
