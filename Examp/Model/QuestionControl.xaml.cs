@@ -21,11 +21,12 @@ namespace Examp
     /// </summary>
     public partial class QuestionControl : UserControl
     {
-      // public Question _current_question;
+     
         public List<Answer> _answers;
+        public List<CheckBox> checks;
         public QuestionControl()
         {
-           // _current_question = new Question();
+            checks = new List<CheckBox>();
             InitializeComponent();
         }            
         public void SetAnswer(Question value)
@@ -41,16 +42,19 @@ namespace Examp
                 Grid.SetRow(lb, i+1);
                 Grid.SetColumn(lb, 0);
                 Grid.SetColumnSpan(lb, 3);
-                _grid.Children.Add(lb);
-                
+                // _grid.Children.Add(lb);
+                checks.Add(lb);
 
-                
+
+
+
             }
+            checks.ForEach(i=> _grid.Children.Add(i));
         }
         public void Clear()
         {
-           
-            for (int i = 0; i < _grid.Children.Count; i++)
+            checks.Clear();
+           /* for (int i = 0; i < _grid.Children.Count; i++)
             {
                 if (_grid.Children[i] == _question)
                     continue;
@@ -58,8 +62,8 @@ namespace Examp
                     _grid.Children.Remove(_grid.Children[i]);
 
 
-            }
-           
+            }*/
+
                _grid.RowDefinitions.Clear();
             _grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             _grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });

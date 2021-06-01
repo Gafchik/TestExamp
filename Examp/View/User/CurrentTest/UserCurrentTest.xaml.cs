@@ -54,7 +54,7 @@ namespace Examp.View.User.CurrentTest
             _questions = Question_Repository.Select().ToList().FindAll(i => i.Question_Test_ID == test.Test_ID);
             for (int i = 0; i < _questions.Count; i++)
             {
-                Button btt_question = new Button { Content = (i + 1).ToString(), Tag = _questions[i]};
+                Button btt_question = new Button { Content = (i + 1).ToString(),Height = 20,Width=50, Tag = _questions[i]};
                 btt_question.Click += Btt_question_Click;
                 questionPanel.Children.Add(btt_question);
             }
