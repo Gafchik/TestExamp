@@ -69,7 +69,7 @@ namespace Examp.ModelView.User.Category
 
                     var window = new MainWindow();
                     window.Show();
-                    (act as AdminWindow).Close();
+                    (act as Window).Close();
                 }));
             }
         }

@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Examp"
              StartupUri="View/SingIn.xaml">
     <Application.Resources>
-         
+       
     </Application.Resources>
 </Application>

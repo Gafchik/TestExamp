@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using DapperLib;
 
 namespace Examp.View.User.CurrentTest
 {
@@ -23,23 +24,24 @@ namespace Examp.View.User.CurrentTest
     /// </summary>
     public partial class UserCurrentTest : Window 
     {
-
-        DispatcherTimer _timer;
-        TimeSpan _time;
+       
+        List<Question> _questions;
+        DispatcherTimer _timer; // таймер
+        TimeSpan _time; // время для таймера
 
         public DapperLib.Test test;
         public UserCurrentTest(DapperLib.Test value)
         {
             InitializeComponent();
-            test = value;                   
-            Test_L.Content = value.Test_Name;
+            test = value;            // текущий тест       
+            Test_L.Content = value.Test_Name; // лейбыл для отображения имени
 
-            _time = TimeSpan.FromMinutes(1);
+            _time = TimeSpan.FromMinutes(10); // интервал таймера
 
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 Timer_L.Text = _time.ToString("c");
-                if (_time == TimeSpan.Zero)
+                if (_time == TimeSpan.Zero) // что  происходит когда время вышло
                 { 
                     _timer.Stop();
                     MessageBox.Show("Время вышло");
@@ -47,10 +49,24 @@ namespace Examp.View.User.CurrentTest
                 _time = _time.Add(TimeSpan.FromSeconds(-1));
             }, Application.Current.Dispatcher);
 
-            _timer.Start();
-           
+            _timer.Start(); // старт таймера
+
+            _questions = Question_Repository.Select().ToList().FindAll(i => i.Question_Test_ID == test.Test_ID);
+            for (int i = 0; i < _questions.Count; i++)
+            {
+                Button btt_question = new Button { Content = (i + 1).ToString(), Tag = _questions[i]};
+                btt_question.Click += Btt_question_Click;
+                questionPanel.Children.Add(btt_question);
+            }
+        
+             
+            question_control.SetAnswer(_questions[0]);
         }
 
-       
+        private void Btt_question_Click(object sender, RoutedEventArgs e)
+        {
+            question_control.Clear();
+            question_control.SetAnswer((sender as Button).Tag as Question);
+        }
     }
 }

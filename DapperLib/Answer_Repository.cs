@@ -116,7 +116,7 @@ namespace DapperLib
             return coll;
         }
 
-        public static void Update(Answer value,bool flag)
+        public static void Update(Answer value, string new_txt, bool flag)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -126,7 +126,7 @@ namespace DapperLib
                     try
                     {
                         var sql = "exec [Answer_UPDATE] @ID, @Text, @True";
-                        var values = new { ID = value.Answer_ID, Text = value.Answer_Text, @True =flag };
+                        var values = new { ID = value.Answer_ID, Text = new_txt, @True =flag };
                         db.Query(sql, values, transaction);
                         transaction.Commit();
 
@@ -139,7 +139,7 @@ namespace DapperLib
                 }
             }
         }
-        public static void Update(Answer value)
+        public static void Update(Answer value, string new_txt)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -149,7 +149,7 @@ namespace DapperLib
                     try
                     {
                         var sql = "exec [Answer_UPDATE] @ID, @Text, @True";
-                        var values = new { ID = value.Answer_ID, Text = value.Answer_Text };
+                        var values = new { ID = value.Answer_ID, True = false, Text = new_txt };
                         db.Query(sql, values, transaction);
                         transaction.Commit();
 

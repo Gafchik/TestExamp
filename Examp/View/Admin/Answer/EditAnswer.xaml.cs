@@ -20,13 +20,13 @@ namespace Examp.View.Admin.Answer
                 return;
             if (check.IsChecked.Value)
             {
-                Answer_Repository.Update(answer,true);
+                Answer_Repository.Update(answer, Name.Text, true);
                 MessageBox.Show("Добавлнео, назначено");
                 this.Close();
             }
             else
             {
-                Answer_Repository.Update(answer);
+                Answer_Repository.Update(answer, Name.Text);
                 MessageBox.Show("Добавлнео");
                 this.Close();
             }

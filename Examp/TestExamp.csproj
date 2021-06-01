@@ -64,6 +64,9 @@
     <Compile Include="ModelView\User\Category\UserCategory_ModelView.cs" />
     <Compile Include="ModelView\User\CurrentTest\UserCurrentTest_ModelView.cs" />
     <Compile Include="ModelView\User\Test\UserTest_ModelView.cs" />
+    <Compile Include="Model\QuestionControl.xaml.cs">
+      <DependentUpon>QuestionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\User\Category\UserCategoryWindow.xaml.cs">
       <DependentUpon>UserCategoryWindow.xaml</DependentUpon>
     </Compile>
@@ -73,6 +76,10 @@
     <Compile Include="View\User\Test\UserTestWindow.xaml.cs">
       <DependentUpon>UserTestWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Model\QuestionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\Answer\AnswerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,9 +221,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DapperLib\DapperLib.csproj">
       <Project>{8475d1f0-6b03-4010-a401-23c09a7bb05d}</Project>
