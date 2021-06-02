@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Examp"
         mc:Ignorable="d"
-        ResizeMode="NoResize"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         Title="Вход" Height="300" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>

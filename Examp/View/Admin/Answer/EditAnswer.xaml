@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Examp.View.Admin.Answer"
         mc:Ignorable="d"
-       ResizeMode="NoResize"
+       ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         Title="Изменть Ответ" Height="150" Width="600">
     <StackPanel Orientation="Horizontal">
         <TextBox x:Name="Name" Margin="10 20" Width="400" FontSize="30"/>

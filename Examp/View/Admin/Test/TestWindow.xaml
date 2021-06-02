@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Examp.View.Admin.Test"
         mc:Ignorable="d"
-      ResizeMode="NoResize" x:Name="Window"
+      ResizeMode="NoResize" x:Name="Window" WindowStartupLocation="CenterScreen"
         Title="Меню Тестов" Height="450" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>

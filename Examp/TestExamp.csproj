@@ -62,7 +62,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ModelView\User\Category\UserCategory_ModelView.cs" />
-    <Compile Include="ModelView\User\CurrentTest\UserCurrentTest_ModelView.cs" />
     <Compile Include="ModelView\User\Test\UserTest_ModelView.cs" />
     <Compile Include="Model\QuestionControl.xaml.cs">
       <DependentUpon>QuestionControl.xaml</DependentUpon>

@@ -50,7 +50,7 @@ namespace Examp.View.User.CurrentTest
             }, Application.Current.Dispatcher);
 
             _timer.Start(); // старт таймера
-
+            // добавление кнопок перехода по вопросоам
             _questions = Question_Repository.Select().ToList().FindAll(i => i.Question_Test_ID == test.Test_ID);
             for (int i = 0; i < _questions.Count; i++)
             {
@@ -72,7 +72,7 @@ namespace Examp.View.User.CurrentTest
 
         private void reply_btn_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Ответить", "Если вы ответите\n вы больше не сможете изменить ответ?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+            if (MessageBox.Show("Если вы ответите\n вы больше не сможете изменить ответ", "Ответить?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                 return;
             question_control.checks.FindAll(i => i.IsChecked.Value). // запоминаем ответ
                 ForEach(i => selected_answers.Add(new Selected_Answer
@@ -99,9 +99,8 @@ namespace Examp.View.User.CurrentTest
 
         private void CheckRezult()
         {
-            List<Selected_Answer> all_true_answers = new List<Selected_Answer>();
-            int count_all_true_answer = 0;
-            int count_true_answer = 0;
+            List<Selected_Answer> all_true_answers = new List<Selected_Answer>();// все правельные ответы теста        
+            int count_true_answer = 0; 
             // поиск всех правельных ответов
             _questions.ForEach(i => Answer_Repository.Select().ToList()
             .FindAll(q => q.Answer_Question_ID == i.Question_ID)
