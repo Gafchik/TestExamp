@@ -38,37 +38,26 @@ namespace Examp
             {
                 if (i != 0)
                     _grid.RowDefinitions.Add(new RowDefinition { Height= GridLength.Auto});
-                CheckBox lb = new CheckBox { Content = _answers[i].Answer_Text };
+                CheckBox lb = new CheckBox
+                { 
+                    Content = _answers[i].Answer_Text,                 
+                    Tag = _answers[i]
+                };
                 Grid.SetRow(lb, i+1);
                 Grid.SetColumn(lb, 0);
                 Grid.SetColumnSpan(lb, 3);
-                // _grid.Children.Add(lb);
                 checks.Add(lb);
-
-
-
-
             }
             checks.ForEach(i=> _grid.Children.Add(i));
         }
         public void Clear()
         {
+            checks.ForEach(i => i.Content = string.Empty);
             checks.Clear();
-           /* for (int i = 0; i < _grid.Children.Count; i++)
-            {
-                if (_grid.Children[i] == _question)
-                    continue;
-                if (_grid.Children[i] is CheckBox)
-                    _grid.Children.Remove(_grid.Children[i]);
-
-
-            }*/
-
-               _grid.RowDefinitions.Clear();
+            _grid.RowDefinitions.Clear();
             _grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             _grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-           
         }
 
        

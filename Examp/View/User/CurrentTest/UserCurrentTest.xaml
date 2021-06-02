@@ -26,6 +26,8 @@
         <TextBlock x:Name="Timer_L" Margin="5 10"   Grid.Row="0" Grid.Column="4"  HorizontalAlignment="Center" FontSize="22"/>
         <control:QuestionControl  x:Name="question_control" 
                                   Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Button x:Name="reply_btn" VerticalAlignment="Bottom" Margin="30 10" Click="reply_btn_Click"
+                Content="Ответить" Grid.Row="1" Grid.Column="4"/>
         <StackPanel x:Name="questionPanel" Grid.Row="2" Orientation="Horizontal"/>
     </Grid>
 </Window>
